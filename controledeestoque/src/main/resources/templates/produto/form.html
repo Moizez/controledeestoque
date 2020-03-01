@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml"
+	layout:decorate="~{layout}">
+<head>
+<meta charset="UTF-8" />
+
+</head>
+<body>
+
+	<section class="layout-content" layout:fragment="corpo">
+		<main role="main">
+
+		<section class="jumbotron text-center">
+			<div class="container">
+				<h1 class="jumbotron-heading">ESTOQUE</h1>
+				<p class="lead text-muted">CADASTRO DE PRODUTOS</p>
+			</div>
+		</section>
+
+		<div class="album py-5 bg-light">
+			<div class="container">
+
+				<div class="d-flex justify-content-center">
+					<div class="col-md-8 ">
+
+						<p class="lead text-muted">Dados Cadastrais</p>
+						<hr/>
+						<form th:action="@{/produto/save}" th:object="${produto}" method="POST" class="was-validated">
+							
+							<div class="form-group row col-md-5" style="float: left;">
+								<label for="nome">Nome do Produto</label>
+								<div class="input-group">
+									<input type="text" class="form-control" id="nome" placeholder="Insira nome do produto" 
+											aria-describedby="validationTooltipUsernamePrepend"
+										    th:field="*{nome}"/>
+								</div>
+							</div>
+							
+							<div class="form-group row col-md-3" style="float: left; margin-left: 5px">
+								<label for="quantidade">Quantidade</label>
+								<div class="input-group">
+									<input type="number" class="form-control" id="quantidade" placeholder="Insira a quantidade" 
+											aria-describedby="validationTooltipUsernamePrepend"
+										    th:field="*{quantidade}"/>
+									<div class="invalid-feedback">Apelido é requerido.</div>
+								</div>
+							</div>
+							
+							<div class="form-group row col-md-3" style="float: left; margin-left: 5px">
+								<label for="quantidade">Preço</label>
+								<div class="input-group">
+									<input type="number" class="form-control" id="preco" placeholder="Insira a quantidade" 
+											aria-describedby="validationTooltipUsernamePrepend"
+										    th:field="*{preco}"/>
+									<div class="invalid-feedback">Apelido é requerido.</div>
+								</div>
+							</div>
+							<div class="mb-3" style="margin-left: auto;">
+								<label for="textarea">Descrição do Produto</label>
+								<div class="input-group">
+									<textarea type="text" class="form-control" placeholder="Insira suas observações, se assim desejar" 
+										th:field="*{descricao}"/></textarea>
+								</div>
+							</div>
+							
+							<input type="hidden" th:field="*{id}"> 
+							<div class="form-group row">
+								<div class="col-sm-10">
+									<button type="submit" class="btn btn-success"
+										data-toggle="tooltip" data-placement="right" title="Salvar">
+										<i class="fas fa-save"></i>
+									</button>
+									<button type="button" class="btn btn-danger" th:onClick="|window.location.href='@{/produto/list}'|"   
+										data-toggle="tooltip" data-placement="right" title="Cancelar">						
+										<i class="fas fa-window-close"></i>
+									</button>
+								</div>
+							</div>
+						</form>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+
+		</main>
+
+	</section>
+	<script th:src="@{/js/maskcpf.js}"></script>
+	<script th:src="@{/js/buscacep.js}"></script>
+	<script	th:src="~{}" th:fragment="js"></script>
+	<script th:inline="javascript" th:fragment="inlinescript"></script>
+</body>
+</html>

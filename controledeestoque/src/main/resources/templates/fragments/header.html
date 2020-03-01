@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="UTF-8">
+</head>
+<body>
+	<header th:fragment="cabecalho">
+		<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+			<a class="navbar-brand" th:href="@{/}">ESTOQUE DE PRODUTOS</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#navbarCollapse" aria-controls="navbarCollapse"
+				aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarCollapse">
+				<ul class="navbar-nav mr-auto" style="margin-left: 50px; font: bold;">
+					<li class="nav-item dropdown"><a
+						class="btn btn-dark dropdown-toggle" href="#" id="dropdown02"
+						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">ESTOQUE</a>
+						<div class="dropdown-menu" aria-labelledby="dropdown02">
+							<a class="dropdown-item" th:href="@{/produto/add}">Cadastrar Produto</a>
+							<div class="dropdown-divider"></div>
+							<a class="dropdown-item" th:href="@{/produto/list}">Listar Produtos</a>
+						</div>
+					</li>
+				</ul>
+
+			</div>
+		</nav>
+	</header>
+</body>
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml"
+	layout:decorate="~{layout}">
+<head>
+<meta charset="UTF-8" />
+</head>
+<body>
+
+	<section class="layout-content" layout:fragment="corpo">
+		<main role="main">
+
+		<section class="jumbotron text-center">
+			<div class="container">
+				<h1 class="jumbotron-heading">ESTOQUE</h1>
+				<p class="lead text-muted">LISTA DE PRODUTOS</p>
+			</div>
+		</section>
+
+		<div class="album py-5 bg-light">
+			<div class="container">
+
+				<div class="row">
+					<div class="col-md-12">
+
+						<h2 style="float: left;">Produtos Cadastrados</h2>
+	                    
+						<table id="table-produtores"
+							class="table table-sm table-striped table-bordered nowrap"
+							style="width: 100%">
+							<thead class="thead-dark">
+								<tr class="text-center">
+									<th scope="col">COD</th>
+									<th scope="col">Nome</th>
+									<th scope="col">Quantidade</th>
+									<th scope="col">Preço</th>
+									<th scope="col">Descrição</th>
+									<th scope="col">Ações</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="text-center" th:each="produto : ${produtos}">
+									<td th:text="${produto.id}"></td>
+									<td th:text="${produto.nome}"></td>
+									<td th:text="${produto.quantidade}"></td>
+									<td th:text="${produto.preco}"></td>
+									<td th:text="${produto.descricao}"></td>
+									<td>
+										<div class="btn-group pull-right">
+											<button type="submit" class="btn btn-primary" style="margin-left: 5px" th:onClick="|window.location.href='@{/produto/edit/{id}(id=${produto.id})}'|"  
+												data-toggle="tooltip" data-placement="right" title="Editar">						
+												<i class="fas fa-pen-square"></i>
+											</button>
+											<button type="submit" class="btn btn-danger" style="margin-left: 5px" th:onClick="|window.location.href='@{/produto/delete/{id}(id=${produto.id})}'|"  
+												data-toggle="tooltip" data-placement="right" title="Excluir">						
+												<i class="fas fa-trash-alt"></i>
+											</button>
+									   </div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>				
+				<button type="submit" class="btn btn-success" th:onClick="|window.location.href='@{/produto/add}'|"  
+					data-toggle="tooltip" data-placement="right" title="Adicionar">						
+					<i class="fas fa-plus-square"></i>
+				</button>
+				
+				<hr>
+				<p class="lead text-muted">Entradas</p>
+					<form th:action="@{/produto/entrada}" th:object="${produto}" method="POST">
+						<div class="input-group mb-1">
+							<select name="id" class="form-control">
+								<option value="">Selecione um produto</option>
+								<option th:each="produto : ${produtos}"
+									th:value="${produto.id}" th:text="${produto.nome}"></option>
+							</select>
+							<input type="number" name="quantidade" class="form-control" placeholder="Valor da entrada" aria-label="Recipient's username"
+								aria-describedby="basic-addon2" style="margin-left: 30px">
+						  	<div class="input-group-append">
+						    	<button class="btn btn-primary" type="submit"><i class="fas fa-plus-circle"></i></button>
+						  	</div>
+						</div>
+					</form>
+					<p class="lead text-muted">Saídas</p>
+					<form th:action="@{/produto/saida}" th:object="${produto}" method="POST">
+						<div class="input-group mb-1">
+							<select name="id" class="form-control">
+								<option value="">Selecione um produto</option>
+								<option th:each="produto : ${produtos}"
+									th:value="${produto.id}" th:text="${produto.nome}"></option>
+							</select>
+							<input type="number" name="quantidade" class="form-control" placeholder="Valor da saída" aria-label="Recipient's username"
+								aria-describedby="basic-addon2" style="margin-left: 30px">
+						  	<div class="input-group-append">
+						    	<button class="btn btn-danger" type="submit"><i class="fas fa-minus-circle"></i></button>
+						  	</div>
+						</div>
+					</form>
+					
+				</div>
+				
+				
+			</div>
+
+		</main>
+		
+	</section>
+	<script	th:src="@{/js/produtor.js(v=${version})}" th:fragment="js"></script>
+	<script th:inline="javascript" th:fragment="inlinescript"></script>
+</body>
+</html>

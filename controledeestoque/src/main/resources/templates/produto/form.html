@@ -27,34 +27,32 @@
 						<hr/>
 						<form th:action="@{/produto/save}" th:object="${produto}" method="POST" class="was-validated">
 							
-							<div class="form-group row col-md-5" style="float: left;">
+							<div class="form-group row col-md-6" style="float: left;">
 								<label for="nome">Nome do Produto</label>
 								<div class="input-group">
 									<input type="text" class="form-control" id="nome" placeholder="Insira nome do produto" 
-											aria-describedby="validationTooltipUsernamePrepend"
+											aria-describedby="validationTooltipUsernamePrepend" required="required"
 										    th:field="*{nome}"/>
 								</div>
 							</div>
 							
-							<div class="form-group row col-md-3" style="float: left; margin-left: 5px">
+							<div class="form-group row col-md-3" style="float: left; margin-left: 29px">
 								<label for="quantidade">Quantidade</label>
 								<div class="input-group">
-									<input type="number" class="form-control" id="quantidade" placeholder="Insira a quantidade" 
-											aria-describedby="validationTooltipUsernamePrepend"
+									<input type="number" class="form-control" id="quantidade" 
+											aria-describedby="validationTooltipUsernamePrepend" required="required"
 										    th:field="*{quantidade}"/>
-									<div class="invalid-feedback">Apelido é requerido.</div>
 								</div>
 							</div>
 							
-							<div class="form-group row col-md-3" style="float: left; margin-left: 5px">
-								<label for="quantidade">Preço</label>
+							<div class="form-group row col-md-3" style="float: left; margin-left: 29px">
+								<label for="preco">Preço</label>
 								<div class="input-group">
-									<input type="number" class="form-control" id="preco" placeholder="Insira a quantidade" 
-											aria-describedby="validationTooltipUsernamePrepend"
-										    th:field="*{preco}"/>
-									<div class="invalid-feedback">Apelido é requerido.</div>
+									<input type="text" class="form-control" id="preco" data-mask="#.##0,00"
+									data-mask-reverse="true" th:field="*{preco}"/>
 								</div>
 							</div>
+							
 							<div class="mb-3" style="margin-left: auto;">
 								<label for="textarea">Descrição do Produto</label>
 								<div class="input-group">

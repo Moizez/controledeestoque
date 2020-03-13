@@ -1,12 +1,16 @@
 package com.controledeestoque.model;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
+import org.springframework.format.annotation.NumberFormat;
+import org.springframework.format.annotation.NumberFormat.Style;
 
 @Entity
 public class Produto implements Serializable {
@@ -23,8 +27,9 @@ public class Produto implements Serializable {
 	@Column
 	private int quantidade;
 
-	@Column
-	private String preco;
+	@NumberFormat(style = Style.CURRENCY, pattern = "#,##0.00")
+	@Column(nullable = false, columnDefinition = "DECIMAL(7,2) DEFAULT 0.00")
+	private BigDecimal preco;
 
 	@Column
 	private String descricao;
@@ -53,11 +58,11 @@ public class Produto implements Serializable {
 		this.quantidade = quantidade;
 	}
 
-	public String getPreco() {
+	public BigDecimal getPreco() {
 		return preco;
 	}
 
-	public void setPreco(String preco) {
+	public void setPreco(BigDecimal preco) {
 		this.preco = preco;
 	}
 
